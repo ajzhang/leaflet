@@ -1,0 +1,31 @@
+---
+title: "Leaflet Project"
+author: "Aijun Zhang"
+date: "2023-05-27"
+output: html_document
+---
+
+```{r, eval=T, echo=F}
+library(leaflet)
+methodistIcon<-makeIcon(
+  iconUrl = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzdlZjkxNjViYjBmOGQ2YmNjYTAwYzY0NDk0NDhjNzY5MzM4NTg3YiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PXM/wQ6o9KlCB84MXh5ySF/giphy.gif",
+  iconWidth = 46*215/230, iconHeight = 46,
+  iconAnchorX =46*215/230/2, iconAnchorY = 23
+)
+
+methodistLatLng <- data.frame(
+  lat=c(29.722196, 29.720512,29.723814),
+  lng=c(-95.348241,-95.346199,-95.343826)
+)
+methodistSites<-c(
+  "<a href='http://uhbandsandspiritgroups.com/spirit'>UH Spirit 001</a>",
+  "<a href='http://uhbandsandspiritgroups.com/spirit'>UH Spirit 002</a>",
+  "<a href='http://uhbandsandspiritgroups.com/spirit'>UH Spirit 003</a>"
+)
+methodistLatLng %>%
+  leaflet() %>%
+  addTiles() %>%
+  addRectangles(weight=1, color="red",fill=FALSE,lat1=29.725564774, lng1=-95.349950758,lat2=29.719892306, lng2=-95.342261693) %>%
+  addMarkers(icon=methodistIcon,popup = methodistSites,clusterOptions = markerClusterOptions())
+```
+
